@@ -212,7 +212,8 @@ i{font-style:italic}
 .footer__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px}
 .footer__cols p+p{margin-top:6px;color:var(--muted);font-size:.92rem}
 .footer__mark{display:grid;justify-items:center;gap:16px;margin-top:38px}
-.footer__mark img{width:min(88%,540px);opacity:.85}
+.footer__mark img{width:min(88%,540px);opacity:.9}
+.footer__pole{width:30px;height:112px;border-radius:15px}
 .footer__legal{text-align:center;margin-top:20px}
 
 /* --- cursor / toast / reveal --- */
@@ -285,8 +286,8 @@ body.tijera,body.tijera *{cursor:none!important}
   <div class="pole__sticky">
     <div class="pole__under">
       <div class="pole__head">
-        <p class="mono">Precios</p>
-        <h2>Cuatro servicios.<br><i>Nada más.</i></h2>
+        <p class="mono">Lunes a sábado · 10:00 a 21:00</p>
+        <h2>Precios</h2>
       </div>
       <div class="cards" id="cards"></div>
     </div>
@@ -370,7 +371,7 @@ body.tijera,body.tijera *{cursor:none!important}
       <div><p class="mono">Barberos</p><p>Elegís barbero o te toca el que esté libre.</p></div>
     </div>
     <div class="footer__mark">
-      <img src="pole.png" alt="" style="width:auto;height:150px;opacity:.95">
+      <span class="pole-spin footer__pole" aria-hidden="true"></span>
       <img src="word.png" alt="GoToFuckingBarber">
     </div>
     <p class="footer__legal mono">Demo de motion</p>
@@ -432,7 +433,7 @@ const gate = (() => {
 (() => {
   const sec = $('#top'), cv = $('#heroCv'), ctx = cv.getContext('2d');
   const pct = $('#heroPct'), fill = $('#heroFill'), top = $('#heroTop');
-  const N = 61, PRE = 10;           // con PRE cuadros ya se entra
+  const N = 61, PRE = 6;            // con PRE cuadros ya se entra
   const imgs = new Array(N);
   let got = 0, W = 0, H = 0, vis = true, lastDrawn = -1;
   const ready = (im) => im && im.complete && im.naturalWidth > 0;
