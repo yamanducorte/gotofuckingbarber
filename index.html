@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Barberia GoToFuckingBarber. Corte, barba y cejas. Lunes a sabado de 10 a 21. Pedi tu turno por WhatsApp.">
-<meta name="theme-color" content="#08090c">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="GoToFuckingBarber">
 <meta property="og:description" content="Corte, barba y cejas. Pedi tu turno por WhatsApp.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090c'/%3E%3Cpath d='M10 4h12v24H10z' fill='%23fff'/%3E%3Cpath d='M10 7l12-4v4L10 11zM10 15l12-4v4l-12 4zM10 23l12-4v4l-12 4z' fill='%23d4121f'/%3E%3Cpath d='M10 11l12-4v4l-12 4zM10 19l12-4v4l-12 4z' fill='%231348a8'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffffff'/%3E%3Cpath d='M11 4h10v24H11z' fill='%23ffffff' stroke='%23c3cad4'/%3E%3Cpath d='M11 7l10-3.5v4L11 11zM11 15l10-3.5v4L11 19zM11 23l10-3.5v4L11 27z' fill='%23d4121f'/%3E%3Cpath d='M11 11l10-3.5v4L11 15zM11 19l10-3.5v4L11 23z' fill='%231348a8'/%3E%3C/svg%3E">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>GoToFuckingBarber</title>
@@ -40,10 +40,10 @@ p{margin:0}
 .wrap{width:100%;max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .band{padding-block:clamp(52px,8vw,104px)}
 i{font-style:italic}
-.pole-spin{border-radius:9px;overflow:hidden;flex:none;border:1px solid rgba(242,246,250,.35);
+.pole-spin{border-radius:9px;overflow:hidden;flex:none;border:1px solid rgba(255,255,255,.7);
   background:repeating-linear-gradient(115deg,#fff 0 7px,var(--red) 7px 14px,#fff 14px 21px,var(--blue) 21px 28px);
   background-size:auto 56px;animation:spin 1.6s linear infinite;
-  box-shadow:inset -4px 0 8px rgba(0,0,0,.45),inset 3px 0 6px rgba(255,255,255,.35)}
+  box-shadow:inset -3px 0 6px rgba(0,0,0,.22),inset 3px 0 5px rgba(255,255,255,.6)}
 @keyframes spin{to{background-position:0 -56px}}
 
 /* --- gate --- */
@@ -63,7 +63,7 @@ i{font-style:italic}
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;gap:14px;
   padding:10px max(16px,env(safe-area-inset-left,0px)) 10px max(16px,env(safe-area-inset-right,0px));
   background:rgba(8,9,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav__pole{width:16px;height:34px}
+.nav__pole{width:17px;height:36px}
 .nav__name{font-family:var(--f-disp);font-size:1rem;white-space:nowrap}
 .nav__links{display:flex;gap:18px;margin-left:auto}
 .nav__links a{text-decoration:none;color:var(--muted);font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
@@ -164,9 +164,11 @@ i{font-style:italic}
 
 /* --- 4 · EL TAJO --- */
 .cut{position:relative;min-height:84svh;overflow:hidden;background:var(--ink2);display:grid;place-items:center;isolation:isolate}
-.cut__half{position:absolute;inset:0;background-size:cover;background-position:center;
+.cut__half{position:absolute;inset:0;overflow:hidden;background:#0b0e14;
   transition:transform .85s cubic-bezier(.16,1,.3,1);will-change:transform}
-.cut__half::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,12,.72),rgba(8,9,12,.86))}
+.cut__f{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cut__half::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 60% at 50% 50%,rgba(8,9,12,.3),rgba(8,9,12,.68))}
 .cut__half--t{clip-path:polygon(0 0,100% 0,100% 38%,0 62%)}
 .cut__half--b{clip-path:polygon(0 62%,100% 38%,100% 100%,0 100%)}
 .cut.is-cut .cut__half--t{transform:translate(-4%,-62%) rotate(-2deg)}
@@ -205,13 +207,6 @@ i{font-style:italic}
 .marquee span i{color:var(--red)}
 @keyframes slide{to{transform:translateX(-50%)}}
 
-/* --- recetario --- */
-.recipe{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.recipe article{background:var(--ink);padding:18px 16px;display:grid;gap:7px;align-content:start;min-width:0}
-.recipe .num{font-family:var(--f-mono);font-size:.66rem;color:var(--red);letter-spacing:.14em}
-.recipe h4{margin:0;font-family:var(--f-disp);font-size:1.15rem}
-.recipe p{color:var(--muted);font-size:.89rem}
-
 /* --- footer --- */
 .footer{border-top:1px solid var(--line);background:var(--ink2);padding-block:44px 28px}
 .footer__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px}
@@ -221,8 +216,9 @@ i{font-style:italic}
 .footer__legal{text-align:center;margin-top:20px}
 
 /* --- cursor / toast / reveal --- */
-.cursor{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;z-index:70;pointer-events:none;opacity:0;
-  transition:opacity .25s ease;will-change:transform}
+.cursor{position:fixed;left:0;top:0;width:42px;height:42px;margin:-21px 0 0 -21px;z-index:80;pointer-events:none;opacity:0;
+  transition:opacity .25s ease;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.85))}
+body.tijera,body.tijera *{cursor:none!important}
 .toast{position:fixed;left:50%;bottom:24px;translate:-50% 0;z-index:65;background:var(--cream);color:#0b0d11;
   padding:11px 16px;border-radius:2px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
   opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s ease;pointer-events:none}
@@ -269,11 +265,11 @@ i{font-style:italic}
     <div class="hero__in">
       <div class="hero__top" id="heroTop">
         <img src="word.png" alt="GoToFuckingBarber">
-        <p class="hero__claim">Sentate. Callate. Salí otro.</p>
+        <p class="hero__claim">Sentate, relajate y salí otro.</p>
       </div>
       <div class="knock">
-        <button class="knock__btn" id="knock"><b>Clickeá</b>acá</button>
-        <p class="mono">Dos clics y tenés el turno</p>
+        <button class="knock__btn" id="knock"><b id="knockA">Clickeá</b><span id="knockB">acá</span></button>
+        <p class="mono" id="knockHint">Tocá para entrar</p>
       </div>
     </div>
     <div class="hero__hud">
@@ -345,8 +341,8 @@ i{font-style:italic}
 
 <!-- 4 · EL TAJO -->
 <section class="cut" id="tajo">
-  <div class="cut__half cut__half--t"></div>
-  <div class="cut__half cut__half--b"></div>
+  <div class="cut__half cut__half--t"><img class="cut__f" id="cutF1" alt=""></div>
+  <div class="cut__half cut__half--b"><img class="cut__f" id="cutF2" alt=""></div>
   <div class="cut__slash"></div>
   <div class="cut__flash"></div>
   <div class="zas">¡ZAS!</div>
@@ -360,14 +356,6 @@ i{font-style:italic}
     <h3>Corte + barba <i>$U 420</i></h3>
     <p>En vez de $U 480. Por orden de llegada, hasta que se llene la silla.</p>
     <a class="wa" id="cutWa" href="#agenda">Agarrarla</a>
-  </div>
-</section>
-
-<!-- 5 · EFECTOS -->
-<section class="band" id="efectos">
-  <div class="wrap">
-    <div class="agenda__head"><div><p class="mono">Para el presupuesto</p><h2>Los efectos <i>de esta página</i></h2></div></div>
-    <div class="recipe" id="recipe"></div>
   </div>
 </section>
 
@@ -612,36 +600,41 @@ const toast = (() => {
   renderHours(); renderSum();
 })();
 
-/* ---------- 4 · EL TAJO ---------- */
+/* ---------- 4 · EL TAJO: la navaja de fondo, en loop ---------- */
 (() => {
-  const sec = $('#tajo');
-  $$('.cut__half', sec).forEach((el) => { el.style.backgroundImage = 'url(navaja.jpg)'; });
+  const sec = $('#tajo'), f1 = $('#cutF1'), f2 = $('#cutF2');
+  const N = 25, src = (i) => 'navaja/n' + String(i + 1).padStart(2, '0') + '.jpg';
+  const imgs = [];
+  for (let i = 0; i < N; i++) { const im = new Image(); im.src = src(i); imgs.push(im); }
+  f1.src = f2.src = src(0);
+  let i = 0, dir = 1, vis = false, t = 0;
+  new IntersectionObserver((e) => { vis = e[0].isIntersecting; }, { rootMargin: '10%' }).observe(sec);
+  if (!RM) (function loop(now) {
+    requestAnimationFrame(loop);
+    if (!vis || now - t < 85) return;
+    t = now;
+    i += dir; if (i >= N - 1 || i <= 0) dir *= -1;
+    f1.src = f2.src = src(i);
+  })(0);
   $('#cutBtn').addEventListener('click', () => sec.classList.add('is-cut'));
 })();
 
-/* ---------- marquee + recetario ---------- */
+/* ---------- marquee ---------- */
 (() => {
   const one = SERV.map((s) => '<span>' + s.n + ' <i>' + money(s.p) + '</i></span>').join('');
   $('#mq').innerHTML = one + one;
-  const R = [
-    ['01', 'Local al scroll', 'La ruedita no mueve la página: mueve el video. El plano del local está partido en cuadros que se dibujan uno a uno según cuánto bajaste.'],
-    ['02', 'Cortina de barbero', 'Las franjas del poste tapan la pantalla, giran mientras tapan y se abren hacia abajo con el borde ondulado, mostrando los precios.'],
-    ['03', 'Agenda en dos clics', 'Servicio ya elegido, día ya elegido: tocás la hora y el botón de WhatsApp se arma solo con el mensaje escrito.'],
-    ['04', 'El tajo', 'Un clic parte la pantalla en diagonal, con flash y "¡ZAS!", y detrás queda la oferta.'],
-    ['05', 'Carga rápida', 'La pantalla de entrada muestra el poste girando mientras bajan los primeros cuadros, y se va sola apenas hay con qué dibujar.'],
-    ['06', 'Tijera en el mouse', 'El cursor es una tijera que se cierra al hacer clic y crece sobre los botones.'],
-  ];
-  $('#recipe').innerHTML = R.map((r) => '<article class="r"><span class="num">' + r[0] + '</span>' +
-    '<h4>' + r[1] + '</h4><p>' + r[2] + '</p></article>').join('');
 })();
 
 /* ---------- cursor tijera ---------- */
 (() => {
   const cur = $('#cursor'), b1 = $('#bl1'), b2 = $('#bl2');
-  if (!matchMedia('(pointer:fine)').matches || RM) return;
-  let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y, s = 1;
-  addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; cur.style.opacity = 1;
-    s = e.target.closest('button,a,input,select,.card') ? 1.35 : 1; }, { passive: true });
+  let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y, s = 1, on = false;
+  addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;                 // en el celu no va
+    tx = e.clientX; ty = e.clientY;
+    if (!on) { on = true; cur.style.opacity = 1; document.body.classList.add('tijera'); }
+    s = e.target.closest('button,a,input,select,.card,.hour,.day,.svc button') ? 1.4 : 1;
+  }, { passive: true });
   addEventListener('pointerdown', () => { b1.setAttribute('transform', 'rotate(-9 13.5 27)');
     b2.setAttribute('transform', 'rotate(9 26.5 27)'); });
   addEventListener('pointerup', () => { b1.removeAttribute('transform'); b2.removeAttribute('transform'); });
@@ -658,7 +651,22 @@ const toast = (() => {
 
   const go = (id) => { const t = document.getElementById(id);
     if (t) t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); };
-  $('#knock').addEventListener('click', () => go('agenda'));
+
+  // El botón del hero avanza de a un tramo: tres pasos cortos y recién después la agenda.
+  const hero = $('#top'), knock = $('#knock'), kA = $('#knockA'), kB = $('#knockB'), kH = $('#knockHint');
+  const PASOS = [['Dale', 'otro'], ['Uno', 'más'], ['Pedir', 'turno']];
+  const HINTS = ['Falta poco', 'Último paso', 'Elegí día y hora'];
+  let paso = 0;
+  knock.addEventListener('click', () => {
+    const span = hero.offsetHeight - innerHeight;
+    const top0 = scrollY + hero.getBoundingClientRect().top;
+    if (paso < 3) {
+      paso++;
+      window.scrollTo({ top: top0 + span * (paso / 3), behavior: RM ? 'auto' : 'smooth' });
+      kA.textContent = PASOS[paso - 1][0]; kB.textContent = PASOS[paso - 1][1];
+      kH.textContent = HINTS[paso - 1];
+    } else { go('agenda'); }
+  });
   $('#cutWa').addEventListener('click', (e) => { e.preventDefault(); go('agenda'); });
   $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
     const id = a.getAttribute('href').slice(1);
