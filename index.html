@@ -433,7 +433,7 @@ const gate = (() => {
 (() => {
   const sec = $('#top'), cv = $('#heroCv'), ctx = cv.getContext('2d');
   const pct = $('#heroPct'), fill = $('#heroFill'), top = $('#heroTop');
-  const N = 61, PRE = 6;            // con PRE cuadros ya se entra
+  const N = 31, PRE = 5;            // con PRE cuadros ya se entra
   const imgs = new Array(N);
   let got = 0, W = 0, H = 0, vis = true, lastDrawn = -1;
   const ready = (im) => im && im.complete && im.naturalWidth > 0;
