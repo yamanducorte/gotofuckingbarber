@@ -87,9 +87,6 @@ i{font-style:italic}
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .hero__top{display:grid;gap:14px;justify-items:center;will-change:opacity}
 .hero__top img{width:min(86%,560px);filter:drop-shadow(0 16px 40px rgba(0,0,0,.85))}
-.hero__top.on img{animation:prende .7s steps(1,end) 1}
-@keyframes prende{0%{filter:brightness(.4)}18%{filter:brightness(1.7) drop-shadow(0 0 26px rgba(120,150,255,.8))}30%{filter:brightness(.6)}46%{filter:brightness(1.5) drop-shadow(0 0 18px rgba(120,150,255,.6))}100%{filter:drop-shadow(0 16px 40px rgba(0,0,0,.85))}}
-@media(prefers-reduced-motion:reduce){.hero__top.on img{animation:none}}
 .hero__claim{font-family:var(--f-disp);font-style:italic;font-size:clamp(1.1rem,3.2vw,1.9rem);color:var(--chrome)}
 .knock{display:grid;justify-items:center;gap:14px}
 .knock__btn{position:relative;width:clamp(128px,30vw,156px);aspect-ratio:1;border-radius:50%;cursor:pointer;border:0;
@@ -438,7 +435,7 @@ const gate = (() => {
 (() => {
   const sec = $('#top'), cv = $('#heroCv'), ctx = cv.getContext('2d');
   const pct = $('#heroPct'), fill = $('#heroFill'), top = $('#heroTop');
-  const N = 49, PRE = 5;            // con PRE cuadros ya se entra
+  const N = 31, PRE = 5;            // con PRE cuadros ya se entra
   const imgs = new Array(N);
   let got = 0, W = 0, H = 0, vis = true, lastDrawn = -1;
   const ready = (im) => im && im.complete && im.naturalWidth > 0;
@@ -469,7 +466,7 @@ const gate = (() => {
     return null;
   }
   function draw() {
-    const p = RM ? 1 : clamp(prog(sec) * 1.04);
+    const p = RM ? .6 : clamp(prog(sec) * 1.04);
     const idx = Math.min(N - 1, Math.round(p * (N - 1)));
     if (idx !== lastDrawn) {
       const im = nearest(idx);
@@ -483,9 +480,7 @@ const gate = (() => {
     }
     pct.textContent = String(Math.round(p * 100)).padStart(3, '0') + '%';
     fill.style.width = (p * 100).toFixed(1) + '%';
-    // El logo saluda al entrar, se corre para el recorrido y vuelve cuando la máquina se prende.
-    top.style.opacity = Math.max(1 - sm(.05, .18, p), sm(.86, .96, p)).toFixed(3);
-    top.classList.toggle('on', p > .86);
+    top.style.opacity = (1 - sm(.55, .9, p)).toFixed(3);
   }
   new ResizeObserver(() => { size(); draw(); }).observe(sec);
   new IntersectionObserver((e) => { vis = e[0].isIntersecting; }, { rootMargin: '15%' }).observe(sec);
