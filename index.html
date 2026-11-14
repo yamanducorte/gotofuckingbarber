@@ -3,17 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Barberia GoToFuckingBarber. Corte, barba y cejas. Lunes a sabado de 10 a 21. Pedi tu turno por WhatsApp.">
+<meta name="description" content="Barbería en el Centro de Montevideo: 18 de Julio y Vázquez, Cordón, entre la Intendencia y Tres Cruces. Corte, barba y cejas de lunes a sábado de 10 a 21. Reservá tu turno online.">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://gotofuckingbarber.uy/">
 <meta property="og:url" content="https://gotofuckingbarber.uy/">
-<meta property="og:title" content="GoToFuckingBarber">
-<meta property="og:description" content="Corte, barba y cejas. Pedi tu turno por WhatsApp.">
+<meta property="og:title" content="Barbería en el Centro de Montevideo | GoToFuckingBarber">
+<meta property="og:locale" content="es_UY">
+<meta property="og:description" content="Barbería sobre 18 de Julio y Vázquez, en Cordón, entre el Centro y Tres Cruces. Corte, barba y cejas. Reservá tu turno online.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffffff'/%3E%3Cpath d='M11 4h10v24H11z' fill='%23ffffff' stroke='%23c3cad4'/%3E%3Cpath d='M11 7l10-3.5v4L11 11zM11 15l10-3.5v4L11 19zM11 23l10-3.5v4L11 27z' fill='%23d4121f'/%3E%3Cpath d='M11 11l10-3.5v4L11 15zM11 19l10-3.5v4L11 23z' fill='%231348a8'/%3E%3C/svg%3E">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>GoToFuckingBarber</title>
+<title>Barbería en el Centro de Montevideo | GoToFuckingBarber</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HairSalon","name":"GoToFuckingBarber","description":"Barbería en el Centro de Montevideo, sobre 18 de Julio y Vázquez (Cordón), entre la Intendencia y Tres Cruces. Corte, barba y cejas.",
+"url":"https://gotofuckingbarber.uy/","telephone":"+59899913180","image":"https://gotofuckingbarber.uy/local/f001.jpg","priceRange":"$U 240 - $U 550","currenciesAccepted":"UYU",
+"address":{"@type":"PostalAddress","streetAddress":"Galería de Av. 18 de Julio esq. Vázquez, último local al fondo","addressLocality":"Montevideo","addressRegion":"Montevideo","addressCountry":"UY"},
+"areaServed":["Centro, Montevideo","Cordón, Montevideo","Tres Cruces, Montevideo"],
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"}]}
+</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,6 +100,8 @@ i{font-style:italic}
 .hero__top.on img{animation:prende .7s steps(1,end) 1}
 @keyframes prende{0%{filter:brightness(.4)}18%{filter:brightness(1.7) drop-shadow(0 0 26px rgba(120,150,255,.8))}30%{filter:brightness(.6)}46%{filter:brightness(1.5) drop-shadow(0 0 18px rgba(120,150,255,.6))}100%{filter:drop-shadow(0 16px 40px rgba(0,0,0,.85))}}
 @media(prefers-reduced-motion:reduce){.hero__top.on img{animation:none}}
+.hero__kicker{font-family:var(--f-mono);font-weight:400;font-size:clamp(.6rem,1.6vw,.72rem);letter-spacing:.16em;line-height:1.6;
+  text-transform:uppercase;color:var(--chrome);text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .hero__claim{font-family:var(--f-disp);font-style:italic;font-size:clamp(1.1rem,3.2vw,1.9rem);color:var(--chrome)}
 .knock{display:grid;justify-items:center;gap:14px}
 .knock__btn{position:relative;width:clamp(68px,17vw,80px);aspect-ratio:1;border-radius:50%;cursor:pointer;border:0;padding:0;
@@ -305,7 +315,7 @@ i{font-style:italic}
   <div class="gate__in">
     <span class="pole-spin gate__pole" aria-hidden="true"></span>
     <img src="word.png" alt="GoToFuckingBarber">
-    <p class="gate__sub">Galería 18 y Vázquez · Montevideo</p>
+    <p class="gate__sub">Barbería · 18 de Julio y Vázquez · Centro, Montevideo</p>
     <p class="gate__hint"><span>Deslizá para entrar</span><span aria-hidden="true">↓</span></p>
   </div>
 </div>
@@ -333,8 +343,9 @@ i{font-style:italic}
     <div class="hero__veil"></div>
     <div class="hero__in">
       <div class="hero__top" id="heroTop">
-        <img src="word.png" alt="GoToFuckingBarber">
+        <img src="word.png" alt="GoToFuckingBarber, barbería en el Centro de Montevideo">
         <p class="hero__claim">Sentate, relajate y salí otro.</p>
+        <h1 class="hero__kicker">Barbería en el Centro de Montevideo · 18 de Julio y Vázquez</h1>
       </div>
       <div class="knock">
         <button class="knock__btn" id="knock"><b id="knockA">Clickeá</b><span id="knockB">acá</span></button>
@@ -469,12 +480,13 @@ i{font-style:italic}
 <!-- 5 · UBICACIÓN -->
 <section class="band" id="ubicacion">
   <div class="wrap">
-    <div class="loc__head"><p class="mono">Visitanos</p><h2>Dónde <i>estamos</i></h2></div>
+    <div class="loc__head"><p class="mono">Barbería en el Centro · 18 de Julio · Cordón</p><h2>Dónde <i>estamos</i></h2></div>
     <div class="loc">
       <div class="loc__card">
         <h3>GoToFuckingBarber</h3>
         <p class="loc__addr">Galería de 18 de Julio y Vázquez — último local, al fondo. Montevideo, Uruguay.</p>
         <p class="loc__note">Entrá a la galería y seguí derecho hasta el final: ahí está el poste girando. Si llegaste al fondo, llegaste.</p>
+        <p class="loc__note">Estamos sobre 18 de Julio, en Cordón, a pasos de la Intendencia: la barbería que te queda de camino entre el Centro y Tres Cruces. Desde Tres Cruces, los ómnibus que van por 18 de Julio te dejan en la esquina.</p>
         <div>
           <p class="mono">Horario</p>
           <ul class="loc__hours">
