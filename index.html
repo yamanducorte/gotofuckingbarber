@@ -730,10 +730,10 @@ const toast = (() => {
 
 /* ---------- música ---------- */
 (() => {
-  const TRACK = '1IHWl5LamUGEuP4ozKQSXZ';   // Bad Bunny · Tití Me Preguntó (Spotify)
+  const TRACK = '2lmWwBLVJ2P0HX491zkYws';   // Eladio Carrión · Mbappe, SEN2 KBRN VOL. 2 (Spotify)
   const btn = $('#musicBtn'), panel = $('#musicPanel'), lbl = $('#musicLbl');
   btn.addEventListener('click', () => {
-    if (!panel.firstChild) panel.innerHTML = '<iframe title="Spotify: Bad Bunny, Tití Me Preguntó" loading="lazy" ' +
+    if (!panel.firstChild) panel.innerHTML = '<iframe title="Spotify: Eladio Carrión, Mbappe" loading="lazy" ' +
       'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" ' +
       'src="https://open.spotify.com/embed/track/' + TRACK + '?theme=0"></iframe>';
     panel.hidden = !panel.hidden;                  // al ocultarlo la música sigue sonando
