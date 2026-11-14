@@ -49,15 +49,17 @@ i{font-style:italic}
 @keyframes spin{to{background-position:0 -56px}}
 
 /* --- gate --- */
-.gate{position:fixed;inset:0;z-index:90;background:var(--ink);display:grid;place-items:center;gap:0;
-  transition:opacity .5s ease,visibility .5s}
+.gate{position:fixed;inset:0;z-index:90;background:var(--ink);display:grid;place-items:center;gap:0;cursor:pointer;
+  transition:opacity .6s ease,visibility .6s}
 .gate.is-off{opacity:0;visibility:hidden}
 .gate__in{display:grid;justify-items:center;gap:18px;text-align:center;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .gate__pole{width:22px;height:64px}
-.gate__bar{width:min(240px,62vw);height:2px;background:rgba(195,202,212,.2)}
-.gate__bar span{display:block;height:100%;width:0;background:var(--red);transition:width .25s ease}
-.gate__txt b{font-variant-numeric:tabular-nums;color:var(--cream)}
+.gate__in img{width:min(380px,74vw)}
+.gate__sub{color:var(--muted);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+.gate__hint{display:grid;justify-items:center;gap:4px;color:var(--steel);font-family:var(--f-mono);font-size:.66rem;
+  letter-spacing:.16em;text-transform:uppercase;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
 
 /* --- barra + nav --- */
 .prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:2px;width:0;z-index:61;
@@ -92,12 +94,12 @@ i{font-style:italic}
 @media(prefers-reduced-motion:reduce){.hero__top.on img{animation:none}}
 .hero__claim{font-family:var(--f-disp);font-style:italic;font-size:clamp(1.1rem,3.2vw,1.9rem);color:var(--chrome)}
 .knock{display:grid;justify-items:center;gap:14px}
-.knock__btn{position:relative;width:clamp(128px,30vw,156px);aspect-ratio:1;border-radius:50%;cursor:pointer;border:0;
-  background:var(--red);color:#fff;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  line-height:1.5;box-shadow:0 18px 46px rgba(212,18,31,.45);transition:transform .2s ease,background .2s ease}
+.knock__btn{position:relative;width:clamp(68px,17vw,80px);aspect-ratio:1;border-radius:50%;cursor:pointer;border:0;padding:0;
+  background:var(--red);color:#fff;font-family:var(--f-mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  line-height:1.4;box-shadow:0 10px 26px rgba(212,18,31,.4);transition:transform .2s ease,background .2s ease}
 .knock__btn:hover{background:#ef2130;transform:scale(1.04)}
-.knock__btn::after{content:"";position:absolute;inset:-8px;border:1px solid var(--red);border-radius:50%;animation:ping 2s ease-out infinite}
-.knock__btn b{display:block;font-size:.95rem;letter-spacing:.08em}
+.knock__btn::after{content:"";position:absolute;inset:-5px;border:1px solid var(--red);border-radius:50%;animation:ping 2s ease-out infinite}
+.knock__btn b{display:block;font-size:.62rem;letter-spacing:.06em}
 @keyframes ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.42);opacity:0}}
 .hero__hud{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:16px;display:flex;align-items:center;gap:10px}
 .hero__hud .bar{width:84px;height:3px;background:rgba(195,202,212,.22)}
@@ -127,38 +129,64 @@ i{font-style:italic}
 /* --- 3 · AGENDA --- */
 .agenda__head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
 .agenda__head h2{font-size:clamp(2rem,5vw,3.4rem)}
-.step{display:grid;gap:12px;margin-bottom:26px}
-.step__t{display:flex;align-items:center;gap:10px}
-.step__n{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;
-  font-family:var(--f-mono);font-size:.68rem;flex:none}
-.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media(max-width:860px){.svc{grid-template-columns:repeat(2,1fr)}}
-.svc button{text-align:left;cursor:pointer;background:var(--ink2);border:1px solid var(--line);color:var(--cream);
-  padding:14px 13px;display:grid;gap:4px;min-width:0;transition:border-color .2s ease,background .2s ease}
-.svc button:hover{background:var(--ink3)}
-.svc button.is-on{border-color:var(--red);background:var(--ink3)}
-.svc b{font-family:var(--f-disp);font-size:1.05rem;font-weight:700;line-height:1.15}
-.svc .n{font-family:var(--f-mono);font-size:1.15rem;color:var(--chrome-hi);font-variant-numeric:tabular-nums}
-.svc .d{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
-.day{flex:none;width:84px;cursor:pointer;background:var(--ink2);border:1px solid var(--line);color:var(--cream);
-  padding:11px 8px;display:grid;gap:3px;justify-items:center;text-align:center}
-.day span{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.day b{font-family:var(--f-disp);font-size:1.5rem;line-height:1}
-.day.is-on{border-color:var(--red);background:var(--ink3)}
-.day.is-full{opacity:.42;cursor:not-allowed}
-.day.is-full span:last-child{color:var(--red)}
-.hours{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
-.hour{cursor:pointer;background:var(--ink2);border:1px solid var(--line);color:var(--cream);padding:12px 6px;
-  font-family:var(--f-mono);font-size:.92rem;font-variant-numeric:tabular-nums;transition:background .18s ease}
-.hour:hover{background:var(--ink3)}
-.hour.is-on{background:var(--cream);color:#0b0d11;border-color:var(--cream)}
-.hour.is-taken{opacity:.3;cursor:not-allowed;text-decoration:line-through}
-.hours--closed{color:var(--muted);font-family:var(--f-mono);font-size:.8rem;padding:14px 0}
-.confirm{border:1px solid var(--line);background:linear-gradient(180deg,var(--ink3),var(--ink2));padding:20px 18px;
+/* reserva en pasos: barbero → servicio → día y hora → WhatsApp */
+.wz-steps{display:flex;justify-content:center;gap:clamp(14px,4vw,40px);margin:4px auto 28px;max-width:640px}
+.wz-step{display:grid;justify-items:center;gap:7px;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--steel)}
+.wz-step b{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+  font-weight:400;font-size:.8rem;background:var(--ink2)}
+.wz-step.is-on{color:var(--cream)}
+.wz-step.is-on b{border-color:var(--red);color:var(--red)}
+.wz-step.is-done b{background:var(--red);border-color:var(--red);color:#fff}
+.wz-panel{max-width:860px;margin-inline:auto}
+.wz-bar{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.wz-bar h3{font-size:1.45rem;line-height:1.1}
+.wz-back{background:none;border:1px solid var(--line);color:var(--muted);border-radius:2px;font-family:var(--f-mono);
+  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;cursor:pointer}
+.wz-back:hover{color:var(--cream)}
+.wz-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.wz-card{position:relative;text-align:left;background:var(--ink2);border:1px solid var(--line);padding:18px;cursor:pointer;
+  color:var(--cream);font-family:var(--f-sans);font-size:1rem;display:grid;gap:8px;align-content:start;min-width:0;
+  transition:border-color .2s ease,transform .15s ease}
+.wz-card:hover:not(:disabled){border-color:var(--red);transform:translateY(-2px)}
+.wz-card:disabled{opacity:.55;cursor:default}
+.wz-t{font-family:var(--f-disp);font-size:1.18rem;line-height:1.15}
+.wz-desc{color:var(--muted);font-size:.86rem;line-height:1.45}
+.wz-meta{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.08em;color:var(--steel)}
+.wz-meta b{color:var(--chrome-hi);font-size:1rem;font-variant-numeric:tabular-nums}
+.wz-tag{position:absolute;top:12px;right:12px;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--steel);border:1px dashed var(--line);border-radius:999px;padding:3px 9px}
+.wz-avatar{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:var(--ink3);display:grid;
+  place-items:center;font-family:var(--f-disp);font-size:1.3rem;color:var(--chrome)}
+.wz-note{color:var(--steel);font-size:.82rem;margin-top:14px}
+.wz-when{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:720px){.wz-when{grid-template-columns:1fr}}
+.wz-cal{background:var(--ink2);border:1px solid var(--line);padding:18px}
+.wz-cal__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.wz-cal__top span{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase}
+.wz-cal__top button{background:none;border:1px solid var(--line);color:var(--cream);width:32px;height:32px;border-radius:2px;cursor:pointer}
+.wz-cal__top button:disabled{opacity:.3;cursor:default}
+.wz-cal__dow,.wz-cal__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.wz-cal__dow{font-family:var(--f-mono);font-size:.6rem;color:var(--steel);text-transform:uppercase;text-align:center;margin-bottom:6px}
+.wz-cal__grid button{aspect-ratio:1;border:1px solid transparent;background:var(--ink3);color:var(--cream);border-radius:2px;
+  cursor:pointer;font-family:var(--f-mono);font-size:.78rem;padding:0}
+.wz-cal__grid button:hover:not(:disabled){border-color:var(--red)}
+.wz-cal__grid button:disabled{opacity:.26;cursor:default}
+.wz-cal__grid button.is-sel{background:var(--red);color:#fff}
+.wz-cal__grid .pad{visibility:hidden}
+.wz-slots__t{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.wz-slots__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}
+.wz-slots__grid button{padding:11px 0;border:1px solid var(--line);background:var(--ink2);color:var(--cream);border-radius:2px;
+  cursor:pointer;font-family:var(--f-mono);font-size:.8rem;font-variant-numeric:tabular-nums}
+.wz-slots__grid button:hover:not(:disabled){border-color:var(--red)}
+.wz-slots__grid button:disabled{opacity:.3;cursor:default}
+.wz-slots__grid button.is-taken{text-decoration:line-through}
+.wz-slots__grid button.is-sel{background:var(--red);border-color:var(--red);color:#fff}
+.wz-sum{margin-top:22px;border:1px solid var(--line);background:linear-gradient(180deg,var(--ink3),var(--ink2));padding:20px 18px;
   display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-.confirm__txt{min-width:0}
-.confirm__txt b{font-family:var(--f-disp);font-size:1.5rem;display:block}
+.wz-sum__txt{font-size:.94rem;color:var(--muted);min-width:0}
+.wz-sum__txt b{color:var(--cream)}
 .wa{display:inline-flex;align-items:center;gap:9px;background:#1fa855;color:#fff;text-decoration:none;border:0;cursor:pointer;
   font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;border-radius:2px;
   transition:background .2s ease}
@@ -221,10 +249,7 @@ i{font-style:italic}
 .footer__pole{width:30px;height:112px;border-radius:15px}
 .footer__legal{text-align:center;margin-top:20px}
 
-/* --- cursor / toast / reveal --- */
-.cursor{position:fixed;left:0;top:0;width:42px;height:42px;margin:-21px 0 0 -21px;z-index:80;pointer-events:none;opacity:0;
-  transition:opacity .25s ease;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.85))}
-body.tijera,body.tijera *{cursor:none!important}
+/* --- toast / reveal --- */
 .toast{position:fixed;left:50%;bottom:24px;translate:-50% 0;z-index:65;background:var(--cream);color:#0b0d11;
   padding:11px 16px;border-radius:2px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
   opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s ease;pointer-events:none}
@@ -240,11 +265,12 @@ body.tijera,body.tijera *{cursor:none!important}
 <body>
 
 
-<div class="gate" id="gate">
+<div class="gate" id="gate" role="button" tabindex="0" aria-label="Entrar al sitio">
   <div class="gate__in">
     <span class="pole-spin gate__pole" aria-hidden="true"></span>
-    <p class="mono gate__txt">Afilando <b id="gatePct">0%</b></p>
-    <span class="gate__bar"><span id="gateBar"></span></span>
+    <img src="word.png" alt="GoToFuckingBarber">
+    <p class="gate__sub">Galería 18 y Vázquez · Montevideo</p>
+    <p class="gate__hint"><span>Deslizá para entrar</span><span aria-hidden="true">↓</span></p>
   </div>
 </div>
 
@@ -316,31 +342,69 @@ body.tijera,body.tijera *{cursor:none!important}
       <p class="mono">Lunes a sábado · 10:00 a 21:00</p>
     </div>
 
-    <div class="step">
-      <div class="step__t"><span class="step__n">1</span><p class="mono">Qué te hacés</p></div>
-      <div class="svc" id="svc"></div>
+    <div class="wz-steps">
+      <div class="wz-step is-on" id="st1"><b>1</b>Barbero</div>
+      <div class="wz-step" id="st2"><b>2</b>Servicio</div>
+      <div class="wz-step" id="st3"><b>3</b>Día y hora</div>
     </div>
 
-    <div class="step">
-      <div class="step__t"><span class="step__n">2</span><p class="mono">Qué día</p></div>
-      <div class="days" id="days"></div>
-    </div>
-
-    <div class="step">
-      <div class="step__t"><span class="step__n">3</span><p class="mono">A qué hora</p></div>
-      <div class="hours" id="hours"></div>
-    </div>
-
-    <div class="confirm">
-      <div class="confirm__txt">
-        <p class="mono">Tu turno</p>
-        <b id="sumTxt">Elegí día y hora</b>
-        <p class="mono">WhatsApp <span class="phone">099 913 180</span></p>
+    <!-- paso 1: barbero -->
+    <div class="wz-panel" id="p1">
+      <div class="wz-bar"><h3>Elegí tu barbero</h3></div>
+      <div class="wz-cards">
+        <button class="wz-card" data-barber="El que esté libre">
+          <span class="wz-avatar" aria-hidden="true">✂</span>
+          <b class="wz-t">El que esté libre</b>
+          <span class="wz-desc">Te atiende el primero que se desocupe. Cero vueltas.</span>
+        </button>
+        <button class="wz-card" disabled>
+          <span class="wz-tag">Próximamente</span>
+          <span class="wz-avatar" aria-hidden="true">?</span>
+          <b class="wz-t">Barbero 1</b>
+          <span class="wz-desc">Muy pronto vas a poder elegir con quién cortarte.</span>
+        </button>
+        <button class="wz-card" disabled>
+          <span class="wz-tag">Próximamente</span>
+          <span class="wz-avatar" aria-hidden="true">?</span>
+          <b class="wz-t">Barbero 2</b>
+          <span class="wz-desc">Muy pronto vas a poder elegir con quién cortarte.</span>
+        </button>
       </div>
-      <a class="wa" id="waBtn" aria-disabled="true" href="#agenda" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
-        Reservar por WhatsApp
-      </a>
+    </div>
+
+    <!-- paso 2: servicio -->
+    <div class="wz-panel" id="p2" hidden>
+      <div class="wz-bar"><button class="wz-back" data-back="1">← Atrás</button><h3>Elegí el servicio</h3></div>
+      <div class="wz-cards" id="servCards"></div>
+      <p class="wz-note">Promo: pagando 3 cortes por transferencia tenés 10% de descuento. Consultá por WhatsApp.</p>
+    </div>
+
+    <!-- paso 3: día y hora -->
+    <div class="wz-panel" id="p3" hidden>
+      <div class="wz-bar"><button class="wz-back" data-back="2">← Atrás</button><h3>Elegí día y hora</h3></div>
+      <div class="wz-when">
+        <div class="wz-cal">
+          <div class="wz-cal__top">
+            <button id="calPrev" aria-label="Mes anterior">‹</button>
+            <span id="calTitle"></span>
+            <button id="calNext" aria-label="Mes siguiente">›</button>
+          </div>
+          <div class="wz-cal__dow"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+          <div class="wz-cal__grid" id="calGrid"></div>
+        </div>
+        <div>
+          <p class="wz-slots__t" id="slotsTitle">Seleccioná un día</p>
+          <div class="wz-slots__grid" id="slotsGrid"></div>
+          <p class="wz-note">Si no podés venir, avisá por WhatsApp hasta 2 horas antes del turno.</p>
+        </div>
+      </div>
+      <div class="wz-sum" id="sum" hidden>
+        <p class="wz-sum__txt" id="sumTxt"></p>
+        <a class="wa" id="waBtn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
+          Confirmar por WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -358,10 +422,10 @@ body.tijera,body.tijera *{cursor:none!important}
     <button class="knock__btn" id="cutBtn"><b>Clickeá</b>acá</button>
   </div>
   <div class="cut__back">
-    <p class="mono">Martes y miércoles</p>
-    <h3>Corte + barba <i>$U 420</i></h3>
-    <p>En vez de $U 480. Por orden de llegada, hasta que se llene la silla.</p>
-    <a class="wa" id="cutWa" href="#agenda">Agarrarla</a>
+    <p class="mono">Promo transferencia</p>
+    <h3>3 cortes <i>10% OFF</i></h3>
+    <p>Pagás 3 cortes juntos por transferencia y te llevás un 10% de descuento.</p>
+    <a class="wa" id="cutWa" target="_blank" rel="noopener" href="https://wa.me/59899913180?text=Hola!%20Quiero%20la%20promo%20de%203%20cortes%20pagando%20por%20transferencia%20(10%25%20OFF).">Agarrarla</a>
   </div>
 </section>
 
@@ -379,16 +443,10 @@ body.tijera,body.tijera *{cursor:none!important}
       <span class="pole-spin footer__pole" aria-hidden="true"></span>
       <img src="word.png" alt="GoToFuckingBarber">
     </div>
-    <p class="footer__legal mono">Demo de motion</p>
+    <p class="footer__legal mono">© 2026 GoToFuckingBarber · Montevideo, Uruguay</p>
   </div>
 </footer>
 
-<svg class="cursor" id="cursor" viewBox="0 0 40 40" aria-hidden="true">
-  <g fill="none" stroke="#f3eee4" stroke-width="2" stroke-linecap="round">
-    <circle cx="11" cy="31" r="5"/><circle cx="29" cy="31" r="5"/>
-    <line id="bl1" x1="13.5" y1="27" x2="32" y2="5"/><line id="bl2" x1="26.5" y1="27" x2="8" y2="5"/>
-  </g>
-</svg>
 <div class="toast mono" id="toast"></div>
 
 <script>
@@ -422,23 +480,27 @@ const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, 
 
 /* ---------- gate ---------- */
 const gate = (() => {
-  const el = $('#gate'), bar = $('#gateBar'), pct = $('#gatePct');
+  // Portada de entrada: se abre con click, scroll, deslizar o teclado.
+  const el = $('#gate');
   let off = false;
-  document.body.classList.add('is-locked');
   const hide = () => { if (off) return; off = true;
-    bar.style.width = '100%'; pct.textContent = '100%';
     el.classList.add('is-off'); document.body.classList.remove('is-locked');
-    setTimeout(() => { el.hidden = true; }, 600); };
-  setTimeout(hide, RM ? 0 : 2400);   // nunca traba: se va sola
-  return { hide, set(p) { if (off) return; bar.style.width = (p * 100).toFixed(0) + '%';
-    pct.textContent = Math.round(p * 100) + '%'; if (p >= 1) hide(); } };
+    setTimeout(() => { el.hidden = true; }, 700); };
+  // Los links directos (el QR apunta a #agenda) no pasan por la portada.
+  if (location.hash.length > 1) { off = true; el.hidden = true; return { hide }; }
+  document.body.classList.add('is-locked');
+  el.addEventListener('click', hide);
+  addEventListener('wheel', hide, { passive: true });
+  addEventListener('touchmove', hide, { passive: true });
+  addEventListener('keydown', (e) => { if (['Enter', ' ', 'ArrowDown', 'PageDown'].includes(e.key)) hide(); });
+  return { hide };
 })();
 
 /* ---------- 1 · HERO: el scroll recorre los cuadros ---------- */
 (() => {
   const sec = $('#top'), cv = $('#heroCv'), ctx = cv.getContext('2d');
   const pct = $('#heroPct'), fill = $('#heroFill'), top = $('#heroTop');
-  const N = 49, PRE = 5;            // con PRE cuadros ya se entra
+  const N = 49;
   const imgs = new Array(N);
   let got = 0, W = 0, H = 0, vis = true, lastDrawn = -1;
   const ready = (im) => im && im.complete && im.naturalWidth > 0;
@@ -450,8 +512,7 @@ const gate = (() => {
     while (inflight < 6 && qi < order.length) {
       const i = order[qi++]; inflight++;
       const im = new Image(); im.decoding = 'async';
-      im.onload = im.onerror = () => { inflight--; got++; lastDrawn = -1;
-        gate.set(clamp(got / PRE)); draw(); pump(); };
+      im.onload = im.onerror = () => { inflight--; got++; lastDrawn = -1; draw(); pump(); };
       im.src = 'local/f' + String(i + 1).padStart(3, '0') + '.jpg';
       imgs[i] = im;
     }
@@ -550,62 +611,80 @@ const toast = (() => {
 })();
 
 (() => {
-  const svcEl = $('#svc'), daysEl = $('#days'), hoursEl = $('#hours'), sum = $('#sumTxt'), wa = $('#waBtn');
-  let serv = SERV[0], day = null, hour = null;
-
-  svcEl.innerHTML = SERV.map((s, i) => '<button data-i="' + i + '"' + (i ? '' : ' class="is-on"') + '>' +
-    '<b>' + s.n + '</b><span class="n">' + money(s.p) + '</span><span class="d">' + s.d + ' min</span></button>').join('');
-
-  // próximos 18 días hábiles de calendario (sin domingos)
-  const days = [];
-  const d0 = new Date(); d0.setHours(0, 0, 0, 0);
-  for (let k = 0; days.length < 14 && k < 30; k++) {
-    const d = new Date(d0); d.setDate(d0.getDate() + k);
-    if (d.getDay() === 0) continue;                       // domingo cerrado
-    const key = iso(d);
-    const full = key <= LLENO_HASTA;
-    days.push({ d, key, full });
+  const sec = $('#agenda');
+  const sel = { barber: null, serv: null, date: null, time: null };
+  const panels = [null, $('#p1'), $('#p2'), $('#p3')], steps = [null, $('#st1'), $('#st2'), $('#st3')];
+  function goStep(n) {
+    for (let k = 1; k <= 3; k++) {
+      panels[k].hidden = k !== n;
+      steps[k].classList.toggle('is-on', k === n);
+      steps[k].classList.toggle('is-done', k < n);
+      $('b', steps[k]).textContent = k < n ? '✓' : k;
+    }
+    sec.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' });
   }
-  daysEl.innerHTML = days.map((x, i) => '<button class="day' + (x.full ? ' is-full' : '') + '" data-i="' + i + '"' +
-    (x.full ? ' disabled' : '') + '><span>' + DIAS[x.d.getDay()] + '</span><b>' + x.d.getDate() + '</b>' +
-    '<span>' + (x.full ? 'Completo' : MESES[x.d.getMonth()].slice(0, 3)) + '</span></button>').join('');
+  $$('[data-back]', sec).forEach((b) => b.addEventListener('click', () => goStep(+b.dataset.back)));
 
-  function renderHours() {
-    if (!day) { hoursEl.innerHTML = '<p class="hours--closed">Elegí un día y te muestro las horas libres.</p>'; return; }
-    const taken = TOMADO[day.key] || [];
-    hoursEl.innerHTML = HORAS.map((h) => {
-      const t = taken.includes(h);
-      return '<button class="hour' + (t ? ' is-taken' : '') + (hour === h ? ' is-on' : '') + '"' +
-        (t ? ' disabled' : '') + ' data-h="' + h + '">' + h + '</button>';
+  // paso 1 · barbero
+  $$('[data-barber]', sec).forEach((b) => b.addEventListener('click', () => { sel.barber = b.dataset.barber; goStep(2); }));
+
+  // paso 2 · servicio
+  const servCards = $('#servCards');
+  servCards.innerHTML = SERV.map((s, i) => '<button class="wz-card" data-i="' + i + '"><b class="wz-t">' + s.n + '</b>' +
+    '<span class="wz-desc">' + s.t + '</span><span class="wz-meta"><span>' + s.d + ' min</span><b>' + money(s.p) + '</b></span></button>').join('');
+  servCards.addEventListener('click', (e) => { const b = e.target.closest('.wz-card'); if (!b) return;
+    sel.serv = SERV[+b.dataset.i]; renderCal(); renderSlots(); updateSum(); goStep(3); });
+
+  // paso 3 · calendario y horas
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  let calY = today.getFullYear(), calM = today.getMonth();
+  const calGrid = $('#calGrid'), calTitle = $('#calTitle'), slotsGrid = $('#slotsGrid'), slotsTitle = $('#slotsTitle');
+  const sum = $('#sum'), sumTxt = $('#sumTxt'), wa = $('#waBtn');
+
+  function renderCal() {
+    calTitle.textContent = MESES[calM][0].toUpperCase() + MESES[calM].slice(1) + ' ' + calY;
+    const lead = (new Date(calY, calM, 1).getDay() + 6) % 7;      // lunes = 0
+    const nDays = new Date(calY, calM + 1, 0).getDate();
+    let h = '';
+    for (let i = 0; i < lead; i++) h += '<button class="pad" disabled tabindex="-1"></button>';
+    for (let d = 1; d <= nDays; d++) {
+      const date = new Date(calY, calM, d);
+      const no = date < today || date.getDay() === 0 || iso(date) <= LLENO_HASTA;   // pasado, domingo o completo
+      h += '<button data-d="' + d + '"' + (no ? ' disabled' : '') +
+        (sel.date && +sel.date === +date ? ' class="is-sel"' : '') + '>' + d + '</button>';
+    }
+    calGrid.innerHTML = h;
+    $('#calPrev').disabled = new Date(calY, calM, 1) <= new Date(today.getFullYear(), today.getMonth(), 1);
+  }
+  calGrid.addEventListener('click', (e) => { const b = e.target.closest('button[data-d]'); if (!b || b.disabled) return;
+    sel.date = new Date(calY, calM, +b.dataset.d); sel.time = null; renderCal(); renderSlots(); updateSum(); });
+  $('#calPrev').addEventListener('click', () => { calM--; if (calM < 0) { calM = 11; calY--; } renderCal(); });
+  $('#calNext').addEventListener('click', () => { calM++; if (calM > 11) { calM = 0; calY++; } renderCal(); });
+
+  function renderSlots() {
+    if (!sel.date) { slotsTitle.textContent = 'Seleccioná un día'; slotsGrid.innerHTML = ''; return; }
+    slotsTitle.textContent = 'Horas disponibles';
+    const taken = TOMADO[iso(sel.date)] || [], now = new Date();
+    slotsGrid.innerHTML = HORAS.map((h) => {
+      const slot = new Date(sel.date); slot.setHours(+h.slice(0, 2), +h.slice(3));
+      const t = taken.includes(h), no = t || slot < now;
+      return '<button data-h="' + h + '" class="' + (t ? 'is-taken ' : '') + (sel.time === h ? 'is-sel' : '') + '"' +
+        (no ? ' disabled' : '') + '>' + h + '</button>';
     }).join('');
   }
-  function renderSum() {
-    if (day && hour) {
-      const txt = serv.n + ' · ' + DIAS_L[day.d.getDay()] + ' ' + day.d.getDate() + ' de ' +
-        MESES[day.d.getMonth()] + ' · ' + hour + ' h';
-      sum.textContent = txt;
-      const msg = 'Hola! Quiero reservar ' + serv.n + ' (' + money(serv.p) + ') el ' + DIAS_L[day.d.getDay()] +
-        ' ' + day.d.getDate() + ' de ' + MESES[day.d.getMonth()] + ' a las ' + hour + '.';
-      wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
-      wa.setAttribute('aria-disabled', 'false');
-      wa.target = '_blank';
-    } else {
-      sum.textContent = day ? 'Elegí la hora' : 'Elegí día y hora';
-      wa.href = '#agenda'; wa.setAttribute('aria-disabled', 'true');
-    }
+  slotsGrid.addEventListener('click', (e) => { const b = e.target.closest('button[data-h]'); if (!b || b.disabled) return;
+    sel.time = b.dataset.h; renderSlots(); updateSum(); toast('Turno elegido · mandalo por WhatsApp'); });
+
+  function updateSum() {
+    if (!(sel.serv && sel.date && sel.time)) { sum.hidden = true; return; }
+    const fecha = DIAS_L[sel.date.getDay()] + ' ' + sel.date.getDate() + ' de ' + MESES[sel.date.getMonth()];
+    sumTxt.innerHTML = '<b>' + sel.serv.n + '</b> (' + sel.serv.d + ' min) · <b>' + fecha + '</b> a las <b>' + sel.time +
+      '</b> · Barbero: ' + sel.barber + ' · Total: <b>' + money(sel.serv.p) + '</b>';
+    const msg = '¡Hola GoToFuckingBarber! Quiero reservar: ' + sel.serv.n + ' el ' + fecha + ' a las ' + sel.time +
+      '. Barbero: ' + sel.barber + '. Total ' + money(sel.serv.p) + '.';
+    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    sum.hidden = false;
   }
-  svcEl.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return;
-    serv = SERV[+b.dataset.i]; $$('button', svcEl).forEach((x) => x.classList.toggle('is-on', x === b)); renderSum(); });
-  daysEl.addEventListener('click', (e) => { const b = e.target.closest('.day'); if (!b || b.disabled) return;
-    day = days[+b.dataset.i]; hour = null;
-    $$('.day', daysEl).forEach((x) => x.classList.toggle('is-on', x === b)); renderHours(); renderSum(); });
-  hoursEl.addEventListener('click', (e) => { const b = e.target.closest('.hour'); if (!b || b.disabled) return;
-    hour = b.dataset.h; $$('.hour', hoursEl).forEach((x) => x.classList.toggle('is-on', x === b));
-    renderSum(); toast('Turno elegido · mandalo por WhatsApp'); });
-  // arranca en el primer día con lugar
-  const first = days.find((x) => !x.full);
-  if (first) { day = first; $$('.day', daysEl)[days.indexOf(first)].classList.add('is-on'); }
-  renderHours(); renderSum();
 })();
 
 /* ---------- 4 · EL TAJO: la navaja de fondo, en loop ---------- */
@@ -630,24 +709,8 @@ const toast = (() => {
 /* ---------- marquee ---------- */
 (() => {
   const one = SERV.map((s) => '<span>' + s.n + ' <i>' + money(s.p) + '</i></span>').join('');
-  $('#mq').innerHTML = one + one;
-})();
-
-/* ---------- cursor tijera ---------- */
-(() => {
-  const cur = $('#cursor'), b1 = $('#bl1'), b2 = $('#bl2');
-  let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y, s = 1, on = false;
-  addEventListener('pointermove', (e) => {
-    if (e.pointerType === 'touch') return;                 // en el celu no va
-    tx = e.clientX; ty = e.clientY;
-    if (!on) { on = true; cur.style.opacity = 1; document.body.classList.add('tijera'); }
-    s = e.target.closest('button,a,input,select,.card,.hour,.day,.svc button') ? 1.4 : 1;
-  }, { passive: true });
-  addEventListener('pointerdown', () => { b1.setAttribute('transform', 'rotate(-9 13.5 27)');
-    b2.setAttribute('transform', 'rotate(9 26.5 27)'); });
-  addEventListener('pointerup', () => { b1.removeAttribute('transform'); b2.removeAttribute('transform'); });
-  (function loop() { requestAnimationFrame(loop); x += (tx - x) * .22; y += (ty - y) * .22;
-    cur.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + s.toFixed(2) + ')'; })();
+  const promo = '<span>3 cortes por transferencia <i>10% OFF</i></span>';
+  $('#mq').innerHTML = one + promo + one + promo;
 })();
 
 /* ---------- navegación, progreso, reveal ---------- */
@@ -660,6 +723,20 @@ const toast = (() => {
   const go = (id) => { const t = document.getElementById(id);
     if (t) t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); };
 
+  // Scroll propio, más lento que el nativo, para que el cambio de cuadros del hero se vea con calma.
+  let anim = 0;
+  const stopAnim = () => cancelAnimationFrame(anim);
+  addEventListener('wheel', stopAnim, { passive: true });
+  addEventListener('touchstart', stopAnim, { passive: true });
+  const slowTo = (y, ms) => {
+    stopAnim();
+    if (RM) { scrollTo(0, y); return; }
+    const y0 = scrollY, t0 = performance.now();
+    const ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+    (function step(now) { const k = clamp((now - t0) / ms);
+      scrollTo(0, y0 + (y - y0) * ease(k)); if (k < 1) anim = requestAnimationFrame(step); })(t0);
+  };
+
   // El botón del hero avanza de a un tramo: tres pasos cortos y recién después la agenda.
   const hero = $('#top'), knock = $('#knock'), kA = $('#knockA'), kB = $('#knockB'), kH = $('#knockHint');
   const PASOS = [['Dale', 'otro'], ['Uno', 'más'], ['Pedir', 'turno']];
@@ -670,12 +747,11 @@ const toast = (() => {
     const top0 = scrollY + hero.getBoundingClientRect().top;
     if (paso < 3) {
       paso++;
-      window.scrollTo({ top: top0 + span * (paso / 3), behavior: RM ? 'auto' : 'smooth' });
+      slowTo(top0 + span * (paso / 3), 1900);
       kA.textContent = PASOS[paso - 1][0]; kB.textContent = PASOS[paso - 1][1];
       kH.textContent = HINTS[paso - 1];
     } else { go('agenda'); }
   });
-  $('#cutWa').addEventListener('click', (e) => { e.preventDefault(); go('agenda'); });
   $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
     const id = a.getAttribute('href').slice(1);
     if (!document.getElementById(id) || a.getAttribute('aria-disabled') === 'true') return;
