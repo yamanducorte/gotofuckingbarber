@@ -376,7 +376,7 @@ i{font-style:italic}
     <div class="wz-panel" id="p2" hidden>
       <div class="wz-bar"><button class="wz-back" data-back="1">← Atrás</button><h3>Elegí el servicio</h3></div>
       <div class="wz-cards" id="servCards"></div>
-      <p class="wz-note">Promo: pagando 3 cortes por transferencia tenés 10% de descuento. Consultá por WhatsApp.</p>
+      <p class="wz-note">Promo: 3 cortes pagando por transferencia, $U 1.026 en vez de $U 1.140 (10% OFF). Consultá por WhatsApp.</p>
     </div>
 
     <!-- paso 3: día y hora -->
@@ -423,9 +423,9 @@ i{font-style:italic}
   </div>
   <div class="cut__back">
     <p class="mono">Promo transferencia</p>
-    <h3>3 cortes <i>10% OFF</i></h3>
-    <p>Pagás 3 cortes juntos por transferencia y te llevás un 10% de descuento.</p>
-    <a class="wa" id="cutWa" target="_blank" rel="noopener" href="https://wa.me/59899913180?text=Hola!%20Quiero%20la%20promo%20de%203%20cortes%20pagando%20por%20transferencia%20(10%25%20OFF).">Agarrarla</a>
+    <h3>3 cortes <i>$U 1.026</i></h3>
+    <p>En vez de $U 1.140. Pagás los 3 juntos por transferencia y te llevás un 10% de descuento.</p>
+    <a class="wa" id="cutWa" target="_blank" rel="noopener" href="https://wa.me/59899913180?text=Hola!%20Quiero%20la%20promo%20de%203%20cortes%20por%20transferencia%20a%20%24U%201.026%20(10%25%20OFF).">Agarrarla</a>
   </div>
 </section>
 
@@ -709,7 +709,7 @@ const toast = (() => {
 /* ---------- marquee ---------- */
 (() => {
   const one = SERV.map((s) => '<span>' + s.n + ' <i>' + money(s.p) + '</i></span>').join('');
-  const promo = '<span>3 cortes por transferencia <i>10% OFF</i></span>';
+  const promo = '<span>3 cortes por transferencia <i>$U 1.026</i></span>';
   $('#mq').innerHTML = one + promo + one + promo;
 })();
 
@@ -723,20 +723,6 @@ const toast = (() => {
   const go = (id) => { const t = document.getElementById(id);
     if (t) t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); };
 
-  // Scroll propio, más lento que el nativo, para que el cambio de cuadros del hero se vea con calma.
-  let anim = 0;
-  const stopAnim = () => cancelAnimationFrame(anim);
-  addEventListener('wheel', stopAnim, { passive: true });
-  addEventListener('touchstart', stopAnim, { passive: true });
-  const slowTo = (y, ms) => {
-    stopAnim();
-    if (RM) { scrollTo(0, y); return; }
-    const y0 = scrollY, t0 = performance.now();
-    const ease = (k) => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-    (function step(now) { const k = clamp((now - t0) / ms);
-      scrollTo(0, y0 + (y - y0) * ease(k)); if (k < 1) anim = requestAnimationFrame(step); })(t0);
-  };
-
   // El botón del hero avanza de a un tramo: tres pasos cortos y recién después la agenda.
   const hero = $('#top'), knock = $('#knock'), kA = $('#knockA'), kB = $('#knockB'), kH = $('#knockHint');
   const PASOS = [['Dale', 'otro'], ['Uno', 'más'], ['Pedir', 'turno']];
@@ -747,7 +733,7 @@ const toast = (() => {
     const top0 = scrollY + hero.getBoundingClientRect().top;
     if (paso < 3) {
       paso++;
-      slowTo(top0 + span * (paso / 3), 1900);
+      window.scrollTo({ top: top0 + span * (paso / 3), behavior: RM ? 'auto' : 'smooth' });
       kA.textContent = PASOS[paso - 1][0]; kB.textContent = PASOS[paso - 1][1];
       kH.textContent = HINTS[paso - 1];
     } else { go('agenda'); }
